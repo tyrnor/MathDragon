@@ -13,7 +13,7 @@ struct Question {
     let wrongAnswers: [Int]
     let allAnswers: [Int]
     
-    init(text: String, answer: Int, wrongAnswers: [Int], allAnswers: [Int]) {
+    init(text: String, answer: Int, wrongAnswers: [Int]) {
         self.text = text
         self.answer = answer
         self.wrongAnswers = wrongAnswers
