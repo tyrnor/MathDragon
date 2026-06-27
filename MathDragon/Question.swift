@@ -17,6 +17,8 @@ struct Question {
         self.text = text
         self.answer = answer
         self.wrongAnswers = wrongAnswers
-        self.allAnswers = ([answer] + wrongAnswers).shuffled()
+        var combined = [answer] + wrongAnswers
+        combined.shuffle()
+        self.allAnswers = combined
     }
 }
