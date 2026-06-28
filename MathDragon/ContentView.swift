@@ -11,6 +11,9 @@ struct ContentView: View {
     
     @State private var gameState = GameState.playing
     @State private var currentQuestion = 0
+    @State private var isFirstTime = true
+    @State private var score = 0
+    
     
     let questions = MultiplicationData.table2.questions
     let title = MultiplicationData.table2.title
@@ -20,16 +23,23 @@ struct ContentView: View {
             VStack {
                 switch gameState {
                 case .playing:
+                    Text("\(score)")
                     Text(questions[currentQuestion].text)
                     HStack {
                         ForEach(questions[currentQuestion].allAnswers, id: \.self) { answer in
                             Button {
                                 if answer == questions[currentQuestion].answer {
+                                    if isFirstTime {
+                                        score += 1
+                                    }
                                     if currentQuestion < questions.count - 1 {
                                         currentQuestion += 1
+                                        isFirstTime = true
                                     } else {
                                         gameState = .gameOver
                                     }
+                                } else {
+                                    isFirstTime = false
                                 }
                             } label: {
                                 Text("\(answer)")
@@ -37,7 +47,7 @@ struct ContentView: View {
                         }
                     }
                 case .gameOver:
-                    Text("Game Over")
+                    Text("You scored \(score) out of \(questions.count)")
                 }
                 
             }
