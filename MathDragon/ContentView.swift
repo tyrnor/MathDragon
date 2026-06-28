@@ -28,19 +28,7 @@ struct ContentView: View {
                     HStack {
                         ForEach(questions[currentQuestion].allAnswers, id: \.self) { answer in
                             Button {
-                                if answer == questions[currentQuestion].answer {
-                                    if isFirstTime {
-                                        score += 1
-                                    }
-                                    if currentQuestion < questions.count - 1 {
-                                        currentQuestion += 1
-                                        isFirstTime = true
-                                    } else {
-                                        gameState = .gameOver
-                                    }
-                                } else {
-                                    isFirstTime = false
-                                }
+                                checkAnswer(answer: answer)
                             } label: {
                                 Text("\(answer)")
                             }
@@ -48,6 +36,11 @@ struct ContentView: View {
                     }
                 case .gameOver:
                     Text("You scored \(score) out of \(questions.count)")
+                    Button {
+                        resetGame()
+                    } label: {
+                         Text("Play again")
+                    }
                 }
                 
             }
@@ -55,6 +48,28 @@ struct ContentView: View {
             .navigationTitle(title)
             .navigationBarTitleDisplayMode(.inline)
         }
+    }
+    
+    func checkAnswer(answer: Int) {
+        if answer == questions[currentQuestion].answer {
+            if isFirstTime {
+                score += 1
+            }
+            if currentQuestion < questions.count - 1 {
+                currentQuestion += 1
+                isFirstTime = true
+            } else {
+                gameState = .gameOver
+            }
+        } else {
+            isFirstTime = false
+        }
+    }
+    func resetGame() {
+        gameState = .playing
+        currentQuestion = 0
+        score = 0
+        isFirstTime = true
     }
 }
 
