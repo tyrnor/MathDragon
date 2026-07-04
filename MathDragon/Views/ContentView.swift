@@ -29,7 +29,7 @@ struct ContentView: View {
             VStack {
                 switch gameState {
                 case .menu:
-                    Text("Menu View")
+                    MenuView()
                 case .playing:
                     GameView(questions: questions, gameState: $gameState) {
                         finalScore in
