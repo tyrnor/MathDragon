@@ -1,0 +1,52 @@
+//
+//  GameView.swift
+//  MathDragon
+//
+//  Created by Carlos Yanez Puig on 04/07/2026.
+//
+
+import SwiftUI
+
+struct GameView: View {
+    let questions: [Question]
+    @Binding var gameState: GameState
+    let onGameOver: (Int) -> Void
+    
+    @State private var score = 0
+    @State private var currentQuestion = 0
+    @State private var isFirstTime = true
+    
+    var body: some View {
+        Text("Current score: \(score)")
+        Spacer()
+        Text(questions[currentQuestion].text)
+        HStack {
+            ForEach(questions[currentQuestion].allAnswers, id: \.self) { answer in
+                Button {
+                    checkAnswer(answer: answer)
+                } label: {
+                    Text("\(answer)")
+                }
+            }
+        }
+        Spacer()
+    }
+    
+    func checkAnswer(answer: Int) {
+        if answer == questions[currentQuestion].answer {
+            if isFirstTime {
+                score += 1
+            }
+            if currentQuestion < questions.count - 1 {
+                currentQuestion += 1
+                isFirstTime = true
+            } else {
+                onGameOver(score)
+            }
+        } else {
+            isFirstTime = false
+        }
+    }
+}
+
+
