@@ -9,6 +9,8 @@ import SwiftUI
 
 struct MenuView: View {
     
+    let tables = MultiplicationData.allTables
+ 
     let columns = [
         GridItem(.adaptive(minimum: 120))
     ]
@@ -16,8 +18,8 @@ struct MenuView: View {
     var body: some View {
         ScrollView {
             LazyVGrid(columns: columns) {
-                ForEach(2..<13) {
-                    Text("\($0)")
+                ForEach(tables) { table in
+                    Text(table.title)
                 }
             }
         }

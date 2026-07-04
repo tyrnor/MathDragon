@@ -23,3 +23,6 @@ struct SummaryView: View {
     }    
 }
 
+#Preview {
+    SummaryView(score: .constant(12), questionsCount: 12) {}
+}

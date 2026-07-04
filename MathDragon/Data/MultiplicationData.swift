@@ -8,11 +8,13 @@
 import Foundation
 
 struct MultiplicationData {
-    struct Table {
+    struct Table: Identifiable {
+        let id: String
         let title: String
         let questions: [Question]
     }
     static let table2 = Table(
+        id: "2",
         title: "Multiplication Table of 2",
         questions: [
             Question(
@@ -103,6 +105,7 @@ struct MultiplicationData {
     )
 
     static let table3 = Table(
+        id: "3",
         title: "Multiplication Table of 3",
         questions: [
             Question(
@@ -193,6 +196,7 @@ struct MultiplicationData {
     )
 
     static let table4 = Table(
+        id: "4",
         title: "Multiplication Table of 4",
         questions: [
             Question(
@@ -283,6 +287,7 @@ struct MultiplicationData {
     )
 
     static let table5 = Table(
+        id: "5",
         title: "Multiplication Table of 5",
         questions: [
             Question(
@@ -373,6 +378,7 @@ struct MultiplicationData {
     )
 
     static let table6 = Table(
+        id: "6",
         title: "Multiplication Table of 6",
         questions: [
             Question(
@@ -463,6 +469,7 @@ struct MultiplicationData {
     )
 
     static let table7 = Table(
+        id: "7",
         title: "Multiplication Table of 7",
         questions: [
             Question(
@@ -553,6 +560,7 @@ struct MultiplicationData {
     )
 
     static let table8 = Table(
+        id: "8",
         title: "Multiplication Table of 8",
         questions: [
             Question(
@@ -643,6 +651,7 @@ struct MultiplicationData {
     )
 
     static let table9 = Table(
+        id: "9",
         title: "Multiplication Table of 9",
         questions: [
             Question(
@@ -734,6 +743,7 @@ struct MultiplicationData {
     )
 
     static let table10 = Table(
+        id: "10",
         title: "Multiplication Table of 10",
         questions: [
             Question(
@@ -827,6 +837,7 @@ struct MultiplicationData {
     )
 
     static let table11 = Table(
+        id: "11",
         title: "Multiplication Table of 11",
         questions: [
             Question(
@@ -920,6 +931,7 @@ struct MultiplicationData {
     )
 
     static let table12 = Table(
+        id: "12",
         title: "Multiplication Table of 12",
         questions: [
             Question(
@@ -1012,5 +1024,6 @@ struct MultiplicationData {
             ),
         ]
     )
-
+    
+    static let allTables = [table2, table3, table4, table5, table6, table7, table8, table9, table10, table11, table12]
 }

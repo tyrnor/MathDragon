@@ -12,15 +12,14 @@ struct ContentView: View {
     @State private var gameState = GameState.menu
     @State private var score = 0
 
-    let questions = MultiplicationData.table2.questions
-    let title = MultiplicationData.table2.title
+    let questions = MultiplicationData.table4.questions
     
     var navigationTitle: String {
         switch gameState {
         case .menu:
             "Maths&Dragons"
         case .playing, .summary:
-            MultiplicationData.table2.title
+            MultiplicationData.table4.title
         }
     }
 

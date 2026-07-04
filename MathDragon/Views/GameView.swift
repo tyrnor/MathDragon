@@ -49,4 +49,11 @@ struct GameView: View {
     }
 }
 
+#Preview {
+    GameView(
+        questions: MultiplicationData.table2.questions,
+        gameState: .constant(.playing),
+        onFinish: { _ in }
+    )
+}
 
