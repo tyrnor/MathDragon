@@ -9,16 +9,27 @@ import SwiftUI
 
 struct ContentView: View {
 
-    @State private var gameState = GameState.playing
+    @State private var gameState = GameState.menu
     @State private var score = 0
 
     let questions = MultiplicationData.table2.questions
     let title = MultiplicationData.table2.title
+    
+    var navigationTitle: String {
+        switch gameState {
+        case .menu:
+            "Maths&Dragons"
+        case .playing, .summary:
+            MultiplicationData.table2.title
+        }
+    }
 
     var body: some View {
         NavigationStack {
             VStack {
                 switch gameState {
+                case .menu:
+                    Text("Menu View")
                 case .playing:
                     GameView(questions: questions, gameState: $gameState) {
                         finalScore in
@@ -34,7 +45,7 @@ struct ContentView: View {
 
             }
             .padding()
-            .navigationTitle(title)
+            .navigationTitle(navigationTitle)
             .navigationBarTitleDisplayMode(.inline)
         }
     }
