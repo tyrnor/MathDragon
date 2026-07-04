@@ -23,14 +23,12 @@ struct ContentView: View {
                     GameView(questions: questions, gameState: $gameState) {
                         finalScore in
                         score = finalScore
-                        gameState = .gameOver
+                        gameState = .summary
                     }
-                case .gameOver:
-                    Text("You scored \(score) out of \(questions.count)")
-                    Button {
-                        resetGame()
-                    } label: {
-                        Text("Play again")
+                case .summary:
+                    SummaryView(score: $score, questionsCount: questions.count) {
+                        gameState = .playing
+                        score = 0
                     }
                 }
 
@@ -41,10 +39,7 @@ struct ContentView: View {
         }
     }
 
-    func resetGame() {
-        gameState = .playing
-        score = 0
-    }
+    
 }
 
 #Preview {

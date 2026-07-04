@@ -10,7 +10,7 @@ import SwiftUI
 struct GameView: View {
     let questions: [Question]
     @Binding var gameState: GameState
-    let onGameOver: (Int) -> Void
+    let onFinish: (Int) -> Void
     
     @State private var score = 0
     @State private var currentQuestion = 0
@@ -41,7 +41,7 @@ struct GameView: View {
                 currentQuestion += 1
                 isFirstTime = true
             } else {
-                onGameOver(score)
+                onFinish(score)
             }
         } else {
             isFirstTime = false

@@ -9,5 +9,5 @@ import Foundation
 
 enum GameState {
     case playing
-    case gameOver
+    case summary
 }
