@@ -12,14 +12,15 @@ struct ContentView: View {
     @State private var gameState = GameState.menu
     @State private var score = 0
 
-    let questions = MultiplicationData.table4.questions
+    @State private var questions: [Question] = [Question]()
+    @State private var title: String = ""
     
     var navigationTitle: String {
         switch gameState {
         case .menu:
             "Maths&Dragons"
         case .playing, .summary:
-            MultiplicationData.table4.title
+            title
         }
     }
 
@@ -28,7 +29,11 @@ struct ContentView: View {
             VStack {
                 switch gameState {
                 case .menu:
-                    MenuView()
+                    MenuView() { table in
+                        gameState = .playing
+                        questions = table.questions
+                        title = table.title
+                    }
                 case .playing:
                     GameView(questions: questions, gameState: $gameState) {
                         finalScore in
@@ -37,7 +42,7 @@ struct ContentView: View {
                     }
                 case .summary:
                     SummaryView(score: $score, questionsCount: questions.count) {
-                        gameState = .playing
+                        gameState = .menu
                         score = 0
                     }
                 }

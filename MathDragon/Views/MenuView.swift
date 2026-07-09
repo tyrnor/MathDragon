@@ -14,12 +14,17 @@ struct MenuView: View {
     let columns = [
         GridItem(.adaptive(minimum: 120))
     ]
+    let onStartGame: (MultiplicationData.Table) -> Void
     
     var body: some View {
         ScrollView {
             LazyVGrid(columns: columns) {
                 ForEach(tables) { table in
-                    Text(table.title)
+                    Button {
+                        onStartGame(table)
+                    } label: {
+                        Text(table.title)
+                    }
                 }
             }
         }
@@ -27,5 +32,5 @@ struct MenuView: View {
 }
 
 #Preview {
-    MenuView()
+    MenuView() {_ in }
 }

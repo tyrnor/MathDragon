@@ -17,19 +17,34 @@ struct GameView: View {
     @State private var isFirstTime = true
     
     var body: some View {
-        Text("Current score: \(score)")
-        Spacer()
-        Text(questions[currentQuestion].text)
-        HStack {
-            ForEach(questions[currentQuestion].allAnswers, id: \.self) { answer in
-                Button {
-                    checkAnswer(answer: answer)
-                } label: {
-                    Text("\(answer)")
+        NavigationStack {
+            VStack {
+                Text("Current score: \(score)")
+                Spacer()
+                Text(questions[currentQuestion].text)
+                HStack {
+                    ForEach(questions[currentQuestion].allAnswers, id: \.self) { answer in
+                        Button {
+                            checkAnswer(answer: answer)
+                        } label: {
+                            Text("\(answer)")
+                        }
+                    }
+                }
+                Spacer()
+            }
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) {
+                    Button() {
+                        gameState = .menu
+                    } label: {
+                        Image(systemName: "xmark")
+                            .fontWeight(.bold)
+                    }
                 }
             }
         }
-        Spacer()
+        
     }
     
     func checkAnswer(answer: Int) {
